@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Квадрат Түбір — Топтық Жарыс</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="setup-page">
+  <div class="setup-card">
+    <div class="setup-emoji">🌿</div>
+    <h1 class="setup-title">Квадрат Түбір</h1>
+    <p class="setup-sub">8.1.1.2 — Топтық жарыс ойыны<br>Командалар атын енгізіп, ойынды бастаңыз!</p>
+
+    <div class="divider"></div>
+
+    <div class="team-input-row">
+      <div class="team-emoji-badge">🦁</div>
+      <input class="team-input" id="team1" type="text" placeholder="1-топ атауы" value="1-топ" maxlength="20">
+    </div>
+    <div class="team-input-row">
+      <div class="team-emoji-badge">🐯</div>
+      <input class="team-input" id="team2" type="text" placeholder="2-топ атауы" value="2-топ" maxlength="20">
+    </div>
+    <div class="team-input-row">
+      <div class="team-emoji-badge">🦊</div>
+      <input class="team-input" id="team3" type="text" placeholder="3-топ атауы (міндетті емес)" maxlength="20">
+    </div>
+
+    <div class="divider"></div>
+
+    <div style="margin-bottom:20px; background:var(--mint); border-radius:14px; padding:14px 18px; text-align:left;">
+      <p style="font-weight:800; color:var(--green-700); margin-bottom:8px;">🎮 Ойын ережесі:</p>
+      <ul style="list-style:none; color:var(--text-light); font-size:0.9rem; line-height:1.8;">
+        <li>✅ 3 категория × 4 ұпай деңгейі</li>
+        <li>✅ Кезек кезегімен категория таңдаңыз</li>
+        <li>✅ Дұрыс жауап → ұпай алады</li>
+        <li>✅ Қате жауап → ұпай берілмейді</li>
+        <li>✅ Ең көп ұпай жинаған топ жеңеді!</li>
+      </ul>
+    </div>
+
+    <button class="btn btn-green" style="width:100%; font-size:1.1rem; padding:15px;" onclick="startGame()">
+      🚀 Ойынды бастау!
+    </button>
+  </div>
+</div>
+
+<script src="audio.js"></script>
+<script>
+function startGame() {
+  const t1 = document.getElementById('team1').value.trim() || '1-топ';
+  const t2 = document.getElementById('team2').value.trim() || '2-топ';
+  const t3 = document.getElementById('team3').value.trim();
+  const teams = [t1, t2];
+  if (t3) teams.push(t3);
+  localStorage.setItem('kv_teams', JSON.stringify(teams));
+  localStorage.setItem('kv_scores', JSON.stringify(teams.map(() => 0)));
+  localStorage.setItem('kv_turn', '0');
+  localStorage.setItem('kv_used', JSON.stringify([]));
+  window.location.href = 'game.html';
+}
+</script>
+</body>
+</html>
